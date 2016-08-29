@@ -25,6 +25,7 @@ var MyTest = React.createClass({
    ViewRef : {},
    moveLR : 0,
    moveTB : 0,
+   x:0,
 
   componentWillMount: function() {
     this._panResponder = PanResponder.create({
@@ -94,11 +95,23 @@ var MyTest = React.createClass({
     // console.log("Sin theta", 50*Math.sin(this.moveLR+gestureState.dy));
     //
 
-    var x = (gestureState.dx > 70 || gestureState.dx < -70) ? '70deg' : gestureState.dx + 'deg'
-    console.log("X",x)
+  //var x = (gestureState.dx > 70 || gestureState.dx < -70) ? '70deg' : gestureState.dx + 'deg'
+    //console.log("gestureState.dx",)
+    //console.log(this.x + gestureState.dx);
+    //this.x = (this.x + gestureState.dx < 70 ) ? (this.x + gestureState.dx + 'deg') : '0deg'
+        //console.log("X",this.x)
+        //console.log("gestureState.dx + 'deg'",gestureState.dx + 'deg');
+        //console.log(typeof(gestureState.dx));
+        if(gestureState.dx < 82 && gestureState.dx > -82  ){
+          this.x = (this.x + gestureState.dx)
+        } else{
+          this.x =  70
+
+        }
+        var Contruct = this.x + 'deg'
     this.ViewRef.setNativeProps({
       style: {
-        transform: [{perspective: 500},{ rotateY: x}]
+        transform: [{perspective: 500},{ rotateY: Contruct }]
       }
     })
   },
@@ -153,8 +166,8 @@ var styles = StyleSheet.create({
     width:100,
     borderRadius:50,
     //backgroundColor:'coral',
-    alignItems:'center',
-    justifyContent:'center',
+    // alignItems:'center',
+    // justifyContent:'center',
   }
 });
 
