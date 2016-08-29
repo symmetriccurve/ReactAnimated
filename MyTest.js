@@ -111,7 +111,7 @@ var MyTest = React.createClass({
         var Contruct = this.x + 'deg'
     this.ViewRef.setNativeProps({
       style: {
-        transform: [{perspective: 500},{ rotateY: Contruct }]
+        transform: [{ rotateY: Contruct }]
       }
     })
   },
@@ -148,7 +148,7 @@ var MyTest = React.createClass({
     <View style={styles.container} {...this._panResponder.panHandlers}>
       <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
       ref = {(viewReference)=>{if(viewReference != null){this.ViewRef = viewReference} }}
-          style={{width: 100, height: 100,transform: [{perspective: 500},{ rotateY: '30deg'}]}} />
+          style={{width: 400, height: 400,transform: [{perspective: 500},{ rotateY: '30deg'}]}} />
         {/*<TouchableHighlight onPress= {()=>{this.setStyle()}}>
           <View style={{backgroundColor:'lightblue',height:30, width:100}} >
             <Text style={{backgroundColor:'lightblue',height:30, width:100}}> Click to Change Color</Text>
@@ -161,13 +161,10 @@ var MyTest = React.createClass({
 
 var styles = StyleSheet.create({
   container:{
-    //position: 'absolute',
-    height:100,
-    width:100,
-    borderRadius:50,
+    flex: 1,
     //backgroundColor:'coral',
-    // alignItems:'center',
-    // justifyContent:'center',
+    alignItems:'center',
+    justifyContent:'center',
   }
 });
 

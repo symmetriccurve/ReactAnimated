@@ -11,9 +11,9 @@ var {
 } = ReactNative;
 
 
-var Test = require('./Test')
+//var Test = require('./Test')
 var MyTest = require('./MyTest')
-var CircularSlider = require('./CircularSlider')
+//var CircularSlider = require('./CircularSlider')
 var ScrollView = require('./ScrollView')
 
 var ReAnt = React.createClass({
