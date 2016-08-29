@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Animated.app"
-               BlueprintName = "Animated"
-               ReferencedContainer = "container:Animated.xcodeproj">
+               BuildableName = "ReAnt.app"
+               BlueprintName = "ReAnt"
+               ReferencedContainer = "container:ReAnt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "AnimatedTests.xctest"
-               BlueprintName = "AnimatedTests"
-               ReferencedContainer = "container:Animated.xcodeproj">
+               BuildableName = "ReAntTests.xctest"
+               BlueprintName = "ReAntTests"
+               ReferencedContainer = "container:ReAnt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "AnimatedTests.xctest"
-               BlueprintName = "AnimatedTests"
-               ReferencedContainer = "container:Animated.xcodeproj">
+               BuildableName = "ReAntTests.xctest"
+               BlueprintName = "ReAntTests"
+               ReferencedContainer = "container:ReAnt.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Animated.app"
-            BlueprintName = "Animated"
-            ReferencedContainer = "container:Animated.xcodeproj">
+            BuildableName = "ReAnt.app"
+            BlueprintName = "ReAnt"
+            ReferencedContainer = "container:ReAnt.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Animated.app"
-            BlueprintName = "Animated"
-            ReferencedContainer = "container:Animated.xcodeproj">
+            BuildableName = "ReAnt.app"
+            BlueprintName = "ReAnt"
+            ReferencedContainer = "container:ReAnt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Animated.app"
-            BlueprintName = "Animated"
-            ReferencedContainer = "container:Animated.xcodeproj">
+            BuildableName = "ReAnt.app"
+            BlueprintName = "ReAnt"
+            ReferencedContainer = "container:ReAnt.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

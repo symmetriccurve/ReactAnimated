@@ -1,3 +1,3 @@
-rootProject.name = 'Animated'
+rootProject.name = 'ReAnt'
 
 include ':app'

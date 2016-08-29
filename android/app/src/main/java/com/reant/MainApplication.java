@@ -1,4 +1,4 @@
-package com.animated;
+package com.reant;
 
 import android.app.Application;
 import android.util.Log;

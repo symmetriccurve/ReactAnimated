@@ -1,53 +1,29 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict';
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
+var React = require('react');
+var ReactNative = require('react-native');
+var {
+  PanResponder,
   StyleSheet,
-  Text,
-  View
-} from 'react-native';
+  View,
+  processColor,
+  AppRegistry
+} = ReactNative;
 
-class Animated extends Component {
-  render() {
+
+var Test = require('./Test')
+var MyTest = require('./MyTest')
+var CircularSlider = require('./CircularSlider')
+var ScrollView = require('./ScrollView')
+
+var ReAnt = React.createClass({
+  render: function() {
+    console.log("This state", this);
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+        <MyTest/>
     );
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
 
-AppRegistry.registerComponent('Animated', () => Animated);
+
+AppRegistry.registerComponent('ReAnt', () => ReAnt);
