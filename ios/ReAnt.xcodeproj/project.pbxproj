@@ -623,7 +623,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hello.js;
+				PRODUCT_BUNDLE_IDENTIFIER = large.js;
 				PRODUCT_NAME = ReAnt;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -648,7 +648,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hello.js;
+				PRODUCT_BUNDLE_IDENTIFIER = large.js;
 				PRODUCT_NAME = ReAnt;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
