@@ -26,7 +26,9 @@ var MyTest = React.createClass({
    ViewRef2 : {},
    moveLR : 0,
    moveTB : 0,
-   x:0,
+   x: 60,
+   y : 0,
+   view1Right : 0,
 
   componentWillMount: function() {
     this._panResponder = PanResponder.create({
@@ -103,24 +105,28 @@ var MyTest = React.createClass({
         //console.log("X",this.x)
         //console.log("gestureState.dx + 'deg'",gestureState.dx + 'deg');
         //console.log(typeof(gestureState.dx));
-        if(1 ){
-          this.x = (this.x + gestureState.dx)
-        } else{
-          this.x =  70
+    //this.x = (this.x + gestureState.dx)
+    //var view1Angle = this.x/10 + 'deg'
+    console.log('view1Angle',view1Angle);
 
-        }
-        var Contruct = this.x/50 + 'deg'
+    //Angle must be continious and should not reset to normal, but should add to existing x angle
+    this.x = this.x + (gestureState.dx/50)
+    var view1Angle = this.x + 'deg'
+
+    this.view1Right = this.view1Right + (gestureState.dx/40)
+
+
     this.ViewRef.setNativeProps({
       style: {
-        //top:this.x,
-        right: this.x/100,
-        transform: [{perspective: 250},{ rotateY: Contruct }]
+        right: this.view1Right,
+        transform: [{perspective: 250},{ rotateY: view1Angle }]
       }
     })
-
+    var view2Angle = this.x/50+ 'deg'//this.x/500 + 'deg'
     this.ViewRef2.setNativeProps({
       style: {
-        transform: [{perspective: 250},{ rotateY: Contruct }]
+        //right:this.x/50,
+        transform: [{perspective: 250},{ rotateY: view2Angle }]
       }
     })
   },
@@ -155,12 +161,12 @@ var MyTest = React.createClass({
 
     return (
     <View style={styles.container} {...this._panResponder.panHandlers}>
-      <Image source={{uri: 'https://www.novoda.com/blog/content/images/2016/06/reactive-nativingitup-png-800x600_q96.png'}} resizeMode= 'contain'
+      <Image source={{uri: 'https://www.mavericklabel.com/images/products/preprinted-stock/stock-label/color-coded/squares/square-fluorescent-green-4x4-inch-200x200.png'}} resizeMode= 'contain'
       ref = {(viewReference)=>{if(viewReference != null){this.ViewRef = viewReference} }}
-          style={{width: 200, height: 200,transform: [{perspective: 500},{ rotateY: '30deg'}]}} />
-          <Image source={{uri: 'https://www.novoda.com/blog/content/images/2016/06/reactive-nativingitup-png-800x600_q96.png'}} resizeMode= 'contain'
+          style={{width: 200, height: 200, right: this.view1Right,transform: [{perspective: 250},{ rotateY: this.x + 'deg'}]}} />
+          <Image source={{uri: 'https://www.mavericklabel.com/images/products/preprinted-stock/stock-label/color-coded/squares/square-green-2-1-2x2-1-2-inch-200x200.png'}} resizeMode= 'contain'
           ref = {(viewReference2)=>{if(viewReference2 != null){this.ViewRef2 = viewReference2} }}
-              style={{width: 200, height: 200,transform: [{perspective: 500},{ rotateY: '30deg'}]}} />
+              style={{width: 200, height: 200,transform: [{perspective: 250},{ rotateY: this.y + 'deg'}]}} />
         {/*<TouchableHighlight onPress= {()=>{this.setStyle()}}>
           <View style={{backgroundColor:'lightblue',height:30, width:100}} >
             <Text style={{backgroundColor:'lightblue',height:30, width:100}}> Click to Change Color</Text>
