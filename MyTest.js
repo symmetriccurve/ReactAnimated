@@ -13,8 +13,10 @@ var {
   Image
 } = ReactNative;
 
-
-
+var cardSide = 150
+var view1 = require('./Images/view1.png')
+var view2 = require('./Images/view2.png')
+var view3 = require('./Images/view3.png')
 var MyTest = React.createClass({
 
 // a view has something called a setNativeProps which can be accessed through the refs of the component.
@@ -22,13 +24,54 @@ var MyTest = React.createClass({
 // get the nativeProps and assign it global variable somthing like this viewref = (ref created from the component)
 // now you can handle the style object of the component with out re-rendering the component by passing the style object to the
 //setNativeProps(styleObject) i.e setNativeProps({style:{height: 100, width:100}}) .. hooorayyy
-   ViewRef : {},
-   ViewRef2 : {},
+   View1Ref : {},
+   View2Ref : {},
+   View3Ref : {},
+
+   View1Styles:{
+      right  : -100,
+      width  : cardSide,
+      height : cardSide,
+      // transform: [
+      //    { perspective: 1000 },
+      //    { rotateY: 50 + 'deg' }
+      // ]
+   },
+
+   View2Styles:{
+      right: 0,
+      width  : cardSide,
+      height : cardSide,
+      zIndex : 1,
+   },
+
+   View3Styles:{
+      right: 100,
+      width  : cardSide,
+      height : cardSide,
+
+   },
+
    moveLR : 0,
    moveTB : 0,
    x: 60,
    y : 0,
    view1Right : 0,
+
+   greenCard:{
+      right : 0,
+      left  : 0
+   },
+
+   RedCard :{
+      right : 0,
+      left  : 0
+   },
+
+   blueCard:{
+      right : 0,
+      left  : 0
+   },
 
   componentWillMount: function() {
     this._panResponder = PanResponder.create({
@@ -87,6 +130,15 @@ var MyTest = React.createClass({
   */
 
   _handlePanResponderMove:function(e: Object, gestureState: Object){
+
+
+
+
+
+
+
+
+
     //console.log("Event", e, "    ", "gestureState",gestureState);
     // console.log("#############MOVE#################");
     // console.log("gestureState.dx",gestureState.dx);
@@ -107,28 +159,28 @@ var MyTest = React.createClass({
         //console.log(typeof(gestureState.dx));
     //this.x = (this.x + gestureState.dx)
     //var view1Angle = this.x/10 + 'deg'
-    console.log('view1Angle',view1Angle);
-
-    //Angle must be continious and should not reset to normal, but should add to existing x angle
-    this.x = this.x + (gestureState.dx/50)
-    var view1Angle = this.x + 'deg'
-
-    this.view1Right = this.view1Right + (gestureState.dx/40)
-
-
-    this.ViewRef.setNativeProps({
-      style: {
-        right: this.view1Right,
-        transform: [{perspective: 250},{ rotateY: view1Angle }]
-      }
-    })
-    var view2Angle = this.x/50+ 'deg'//this.x/500 + 'deg'
-    this.ViewRef2.setNativeProps({
-      style: {
-        //right:this.x/50,
-        transform: [{perspective: 250},{ rotateY: view2Angle }]
-      }
-    })
+   //  console.log('view1Angle',view1Angle);
+    //
+   //  //Angle must be continious and should not reset to normal, but should add to existing x angle
+   //  this.x = this.x + (gestureState.dx/50)
+   //  var view1Angle = this.x + 'deg'
+    //
+   //  this.view1Right = this.view1Right + (gestureState.dx/40)
+    //
+    //
+   //  this.View1Ref.setNativeProps({
+   //    style: {
+   //      right: this.view1Right,
+   //      transform: [{perspective: 250},{ rotateY: view1Angle }]
+   //    }
+   //  })
+   //  var view2Angle = this.x/50+ 'deg'//this.x/500 + 'deg'
+   //  this.View2Ref.setNativeProps({
+   //    style: {
+   //      //right:this.x/50,
+   //      transform: [{perspective: 250},{ rotateY: view2Angle }]
+   //    }
+   //  })
   },
 
   _handlePanResponderEnd(e: Object, gestureState: Object){
@@ -161,12 +213,18 @@ var MyTest = React.createClass({
 
     return (
     <View style={styles.container} {...this._panResponder.panHandlers}>
-      <Image source={{uri: 'https://www.mavericklabel.com/images/products/preprinted-stock/stock-label/color-coded/squares/square-fluorescent-green-4x4-inch-200x200.png'}} resizeMode= 'contain'
-      ref = {(viewReference)=>{if(viewReference != null){this.ViewRef = viewReference} }}
-          style={{width: 200, height: 200, right: this.view1Right,transform: [{perspective: 250},{ rotateY: this.x + 'deg'}]}} />
-          <Image source={{uri: 'https://www.mavericklabel.com/images/products/preprinted-stock/stock-label/color-coded/squares/square-green-2-1-2x2-1-2-inch-200x200.png'}} resizeMode= 'contain'
-          ref = {(viewReference2)=>{if(viewReference2 != null){this.ViewRef2 = viewReference2} }}
-              style={{width: 200, height: 200,transform: [{perspective: 250},{ rotateY: this.y + 'deg'}]}} />
+      <Image source={view1} resizeMode= 'contain'
+       ref = {(View1Ref)=>{if(View1Ref != null){this.View1Ref = View1Ref} }} style ={this.View1Styles}/>
+
+
+      <Image source={view2} resizeMode= 'contain'
+       ref = {(View2Ref)=>{if(View2Ref != null){this.View2Ref = View2Ref} }}
+           style ={this.View2Styles}/>
+
+      <Image source={view3} resizeMode= 'contain'
+        ref = {(View3Ref)=>{if(View3Ref != null){this.View3Ref = View3Ref} }}
+         style ={this.View3Styles}/>
+
         {/*<TouchableHighlight onPress= {()=>{this.setStyle()}}>
           <View style={{backgroundColor:'lightblue',height:30, width:100}} >
             <Text style={{backgroundColor:'lightblue',height:30, width:100}}> Click to Change Color</Text>
@@ -181,7 +239,7 @@ var styles = StyleSheet.create({
   container:{
     flex: 1,
     flexDirection:'row',
-    //backgroundColor:'coral',
+    backgroundColor:'coral',
     alignItems:'center',
     justifyContent:'center',
   }
