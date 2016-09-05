@@ -13,7 +13,8 @@ var {
   Image
 } = ReactNative;
 
-var cardSide = 150
+var cardSide = 200
+var speed    = 1
 var view1 = require('./Images/view1.png')
 var view2 = require('./Images/view2.png')
 var view3 = require('./Images/view3.png')
@@ -29,7 +30,7 @@ var MyTest = React.createClass({
    View3Ref : {},
 
    View1Styles:{
-      right  : -100,
+      right  : 0,
       width  : cardSide,
       height : cardSide,
       zIndex : 0
@@ -132,41 +133,130 @@ var MyTest = React.createClass({
   */
 
   _handlePanResponderMove:function(e: Object, gestureState: Object){
+   //   this.View1Styles.height = this.View1Styles.height - gestureState.dx/10
+   //   this.View1Styles.width  = this.View1Styles.width  - gestureState.dx/10
+      //console.log("moveX",gestureState.moveX);
+      //console.log("dx   ",gestureState.dx,"dy    ",gestureState.dy,'moveX     ',gestureState.moveX,'moveY    ',gestureState.moveY,'x0    ',gestureState.x0,'y0   ',gestureState.y0);
 
+      console.log(this.View1Styles.height - (gestureState.dx/5) );
 
-       this.View1Styles.right = this.View1Styles.right - (gestureState.dx/20)
-       console.log("this.View1Styles.right",this.View1Styles.right);
-       if(this.View1Styles.right < -150) {
+      if(this.View1Styles.height - (gestureState.dx/5) < 200 && this.View1Styles.height - (gestureState.dx/5) > 150 ) {
+         this.View1Styles.height = this.View1Styles.height - (gestureState.dx/5)
+      }
+
            this.View1Ref.setNativeProps({
-                 style: {
-                  //right  : this.View2Styles.right,
-                  zIndex : 10
-                 }
-               })
-       }
-
-       if(this.View1Styles.right > -78) {
-           this.View1Ref.setNativeProps({
-                 style: {
-                  //right  : this.View2Styles.right,
-                  zIndex : 0
-                 }
-               })
-       }
-
-        this.View1Ref.setNativeProps({
               style: {
-                right: this.View1Styles.right
+                  height : this.View1Styles.height,
+                  width  : this.View1Styles.height,
+                  right  : this.View1Styles.right
               }
-            })
+              })
+
+      //console.log("Change",(this.View1Styles.height - gestureState.dx/10));
+   //   if((this.View1Styles.height - gestureState.dx/10) <= 200 && (this.View1Styles.height - gestureState.dx/10) > 200){
+   //      this.View1Styles.height = this.View1Styles.height - gestureState.dx/10
+   //      this.View1Styles.width  = this.View1Styles.width  - gestureState.dx/10
+   //      this.View1Ref.setNativeProps({
+   //         style: {
+   //             height : this.View1Styles.height,
+   //             width  : this.View1Styles.width ,
+   //             right  : this.View1Styles.right
+   //         }
+   //         })
+   //   }
+
+   //   console.log("this.View1Styles.height",this.View1Styles.height);
+   //   if(this.View1Styles.height <= 200 ){
+   //      this.View1Ref.setNativeProps({
+   //           style: {
+   //              height : this.View1Styles.height,
+   //              width  : this.View1Styles.width ,
+   //              right  : this.View1Styles.right
+   //           }
+   //          })
+   //   }else {
+   //      this.View1Styles.height = 200
+   //   }
+     //
+   //   if(this.View1Styles.height > 150){
+   //      this.View1Ref.setNativeProps({
+   //           style: {
+   //              height : this.View1Styles.height,
+   //              width  : this.View1Styles.width ,
+   //              right  : this.View1Styles.right
+   //           }
+   //          })
+   //   }else {
+   //      this.View1Styles.height = 150
+   //   }
 
 
-       this.View2Styles.right = this.View2Styles.right - (gestureState.dx/20)
-        this.View2Ref.setNativeProps({
-              style: {
-                //right: this.View2Styles.right
-              }
-            })
+
+       //this.View1Styles.right = this.View1Styles.right - (gestureState.dx/20)
+       //console.log("this.View1Styles.right",this.View1Styles.right);
+      //  if(this.View1Styles.right < -150) {
+      //      this.View1Ref.setNativeProps({
+      //            style: {
+      //             //right  : this.View2Styles.right,
+      //             height : cardSide -gestureState.dx/20,
+      //             width  : cardSide -gestureState.dx/20,
+      //             zIndex : 10
+      //            }
+      //          })
+      //  }
+
+      //  if(this.View1Styles.right > -78) {
+      //      this.View1Ref.setNativeProps({
+      //            style: {
+       //
+      //             //right  : this.View2Styles.right,
+      //             zIndex : 0
+      //            }
+      //          })
+      //  }
+         // console.log("Current height",this.View1Styles.height);
+      //    //console.log(">= 100",this.View1Styles.height);
+      //   if(this.View1Styles.height >= 100){
+      //      this.View1Styles.height = this.View1Styles.height - gestureState.dx/10
+      //      this.View1Styles.width = this.View1Styles.width - gestureState.dx/10
+      //   }else {
+      //      this.View1Styles.height = 100
+      //   }
+
+         // if(0){
+         //       this.View1Styles.height = this.View1Styles.height - gestureState.dx/speed
+         //       this.View1Styles.width  = this.View1Styles.width  - gestureState.dx/speed
+         //
+         //       if(this.View1Styles.height < 200){
+         //          //console.log("<= 200",this.View1Styles.height);
+         //        this.View1Styles.height = this.View1Styles.height - gestureState.dx/speed
+         //        this.View1Styles.width  = this.View1Styles.width  -  gestureState.dx/speed
+         //      } else{
+         //          this.View1Styles.height = 200
+         //          this.View1Styles.width  = 200
+         //     }
+         //
+         //     if(this.View1Styles.height > 100  ){
+         //        this.View1Styles.height = this.View1Styles.height - gestureState.dx/speed
+         //        this.View1Styles.width = this.View1Styles.width   - gestureState.dx/speed
+         //     }else {
+         //        this.View1Styles.height = 100
+         //        this.View1Styles.width  = 100
+         //     }
+         // }
+         //
+
+
+
+
+            //console.log("After height",this.View1Styles.height);
+
+      //  this.View2Styles.right = this.View2Styles.right - (gestureState.dx/20)
+      //   this.View2Ref.setNativeProps({
+      //         style: {
+      //           right: this.View2Styles.right
+      //         }
+      //       })
 
 
 
@@ -218,7 +308,7 @@ var MyTest = React.createClass({
 
   _handlePanResponderEnd(e: Object, gestureState: Object){
 
-    // // console.log("#############END#################");
+     console.log("#############END#################");
     // // console.log("gestureState.dx",gestureState.dx);
     // // console.log('gestureState.dy',gestureState.dy);
     //
@@ -250,13 +340,13 @@ var MyTest = React.createClass({
        ref = {(View1Ref)=>{if(View1Ref != null){this.View1Ref = View1Ref} }} style ={this.View1Styles}/>
 
 
-      <Image source={view2} resizeMode= 'contain'
+      {/*<Image source={view2} resizeMode= 'contain'
        ref = {(View2Ref)=>{if(View2Ref != null){this.View2Ref = View2Ref} }}
-           style ={this.View2Styles}/>
+           style ={this.View2Styles}/>*/}
 
-      <Image source={view3} resizeMode= 'contain'
+      {/*<Image source={view3} resizeMode= 'contain'
         ref = {(View3Ref)=>{if(View3Ref != null){this.View3Ref = View3Ref} }}
-         style ={this.View3Styles}/>
+         style ={this.View3Styles}/>*/}
 
         {/*<TouchableHighlight onPress= {()=>{this.setStyle()}}>
           <View style={{backgroundColor:'lightblue',height:30, width:100}} >
