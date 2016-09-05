@@ -18,7 +18,7 @@ var ScrollView = require('./ScrollView')
 
 var ReAnt = React.createClass({
   render: function() {
-    console.log("This state", this);
+    //console.log("This state", this);
     return (
         <MyTest/>
     );

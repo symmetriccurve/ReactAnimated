@@ -50,7 +50,7 @@ var Test = React.createClass({
   },
 
   render: function() {
-    console.log("This state from Test", this);
+    //console.log("This state from Test", this);
     return (
       <View
         style={styles.container}>

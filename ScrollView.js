@@ -28,34 +28,34 @@ class RactScroll extends Component {
 
   leftButtonPressed()
   {
-    console.log('Left button pressed.. ')
+    //console.log('Left button pressed.. ')
   }
   rightButtonPressed()
   {
-    console.log('Right button pressed.. ')
+    //console.log('Right button pressed.. ')
   }
 scrollBy(index){
   this.selectedIndex =  this.selectedIndex+1;
-  console.log('selectedIndex..: '+this.selectedIndex)
+  //console.log('selectedIndex..: '+this.selectedIndex)
 
-  console.log('scrollBy.. REF: '+this.refs.scrollView)
+  //console.log('scrollBy.. REF: '+this.refs.scrollView)
   // e.nativeEvent.contentOffset = {x: e.nativeEvent.position * this.state.width}
   let children = this.refs.scrollView.props.children
-  console.log('scrollBy.. children: '+children)
+  //console.log('scrollBy.. children: '+children)
 
   let x =  (CARD_WIDTH/3 * this.selectedIndex)
-  console.log('X POs.. : '+x)
+  //console.log('X POs.. : '+x)
   let y = 0
 
 this.refs.scrollView.scrollTo({ x, y })
 }
 
 contentChange(){
-  console.log('scrollBy.. REF: '+this.refs.scrollView)
+  //console.log('scrollBy.. REF: '+this.refs.scrollView)
 
 }
   render() {
-    console.log('CARD_WIDTH:: '+CARD_WIDTH)
+    //console.log('CARD_WIDTH:: '+CARD_WIDTH)
     return (
       <View style={styles.viewContainer}>
       <View style={{flex:1}}>

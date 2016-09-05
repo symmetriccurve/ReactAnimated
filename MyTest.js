@@ -32,6 +32,7 @@ var MyTest = React.createClass({
       right  : -100,
       width  : cardSide,
       height : cardSide,
+      zIndex : 0
       // transform: [
       //    { perspective: 1000 },
       //    { rotateY: 50 + 'deg' }
@@ -49,6 +50,7 @@ var MyTest = React.createClass({
       right: 100,
       width  : cardSide,
       height : cardSide,
+      zIndex : 0
 
    },
 
@@ -132,8 +134,39 @@ var MyTest = React.createClass({
   _handlePanResponderMove:function(e: Object, gestureState: Object){
 
 
+       this.View1Styles.right = this.View1Styles.right - (gestureState.dx/20)
+       console.log("this.View1Styles.right",this.View1Styles.right);
+       if(this.View1Styles.right < -150) {
+           this.View1Ref.setNativeProps({
+                 style: {
+                  //right  : this.View2Styles.right,
+                  zIndex : 10
+                 }
+               })
+       }
+
+       if(this.View1Styles.right > -78) {
+           this.View1Ref.setNativeProps({
+                 style: {
+                  //right  : this.View2Styles.right,
+                  zIndex : 0
+                 }
+               })
+       }
+
+        this.View1Ref.setNativeProps({
+              style: {
+                right: this.View1Styles.right
+              }
+            })
 
 
+       this.View2Styles.right = this.View2Styles.right - (gestureState.dx/20)
+        this.View2Ref.setNativeProps({
+              style: {
+                //right: this.View2Styles.right
+              }
+            })
 
 
 
