@@ -15,11 +15,12 @@ import {
   Platform,
   Dimensions,
   TouchableHighlight,
-  Animated,
-  TextInput
+  Animated
 } from 'react-native';
 var {height, width} = Dimensions.get('window');
-
+const HEADER_MAX_HEIGHT = 400;
+const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 var Parallax = require('./Parallax')
 class ParallaxView extends Component {
@@ -27,16 +28,8 @@ class ParallaxView extends Component {
      super(props);
 
      this.state = {
-       enter:   new Animated.Value(0.5),
        scrollY: new Animated.Value(0),
-       bounceValue: new Animated.Value(0),
-       pullUp :new Animated.Value(500)
      };
-   }
-
-   componentDidMount(){
-      this._callthis();
-                              // Start the animation
    }
 
    _renderScrollViewContent() {
@@ -54,88 +47,36 @@ class ParallaxView extends Component {
      );
    }
 
-   _animateEntrance() {
-     Animated.spring(
-      this.state.enter,
-      { toValue: 1, friction: 8 }
-     ).start();
-   }
-
-   _pullUp(){
-   this.state.pullUp.setValue(200);
-   Animated.spring(                          // Base: spring, decay, timing
-      this.state.pullUp,                 // Animate `bounceValue`
-      {
-        toValue: 0.6,                         // Animate to smaller size
-        friction: 10,                          // Bouncier spring
-      }
-   ).start();
-   }
-
-   _callthis(){
-
-this.state.bounceValue.setValue(0.5);     // Start large
- Animated.spring(                          // Base: spring, decay, timing
-     this.state.bounceValue,                 // Animate `bounceValue`
-     {
-      toValue: 0.6,                         // Animate to smaller size
-      friction: 10,                          // Bouncier spring
-     }
- ).start();
-   }
-
-
   render() {
-
-     const TM = this.state.bounceValue.interpolate({
-      inputRange: [0, 0.5],
-      outputRange: [0, 100],
-      extrapolate: 'clamp',
-     });
-
-
-     console.log("this state",this.state);
-     return(
-       <View style={{flex:1}}>
-         <TouchableHighlight onPress ={()=>{this._pullUp()}} style={{flex:1}} underlayColor= 'transparent'>
-              <Animated.Image                         // Base: Image, Text, View
-              source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-              style={{
-                flex: 1,
-                transform: [
-                  {translateY: this.state.pullUp},                   // `transform` is an ordered array
-                  {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
-                ]
-              }}
-            />
-         </TouchableHighlight>
-      </View>
-     );
+     //return <Parallax/>
+   //   var _backgroundColor = this._animatedValue.interpolate({
+   // inputRange: [0, 150],
+   // outputRange: ['rgba(255,255,255,1)', 'rgba(0,0,0,1)']
+//});
 
 const headerHeight = this.state.scrollY.interpolate({
   inputRange: [0, 100],
-  outputRange: [0, -100],
+  outputRange: [-10, -400],
   extrapolate: 'clamp',
 });
 
-const marginTop = this.state.scrollY.interpolate({
-  inputRange: [0, 200, 300],
-  outputRange: [700, 600, 100 ],
+const imageOpacity = this.state.scrollY.interpolate({
+  inputRange: [0, HEADER_SCROLL_DISTANCE/10 , HEADER_SCROLL_DISTANCE],
+  outputRange: [1, 1, 0],
   extrapolate: 'clamp',
 });
 
-   //return <Parallax/>
+
     return (
       <View style ={{flex:1,position:'absolute',top:0,bottom:0,left:0,right:0}}>
-            <Animated.View style ={{flex:1,position:'absolute',top:0,bottom:0,left:0,right:0,backgroundColor:'lightyellow'}}>
-                  <TextInput  onSubmitEditing ={()=>{ this.setState({ scrollY: new Animated.Value(300)})}}style ={{flex:1,position:'absolute',top:50,bottom:50,left:20,right:20,backgroundColor:'coral',height:40}}/>
-            </Animated.View>
+            <View style ={{flex:1,position:'absolute',top:0,bottom:0,left:0,right:0,backgroundColor:'coral'}}>
+                  <View  style ={{flex:1,position:'absolute',top:50,bottom:0,left:20,right:20,backgroundColor:'tan',height:40}}/>
 
-            <Animated.View style ={{marginTop:marginTop,position:'absolute',top:0,bottom:0,left:0,right:0,backgroundColor:'lightblue'}}>
-                  <ScrollView style ={{flex:1,position:'absolute',top:0,bottom:0,left:0,right:0,backgroundColor:'peachpuff'}}
-                     onScroll = {
-                        console.log("Scroll Y ", this.state.scrollY),
-                        Animated.event([{nativeEvent: {contentOffset: {y: this.state.scrollY}}}])}
+            </View>
+
+            <Animated.View style ={{marginTop:200,position:'absolute',top:headerHeight,bottom:0,left:0,right:0,backgroundColor:'lightblue'}}>
+                  <ScrollView style ={{flex:1,position:'absolute',top:0,bottom:0,left:0,right:0,backgroundColor:'coral'}}
+                     onScroll = {Animated.event([{nativeEvent: {contentOffset: {y: this.state.scrollY}}}])}
                      scrollEventThrottle = {16}>
 
                         {this._renderScrollViewContent()}
